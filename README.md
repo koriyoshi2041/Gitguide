@@ -70,8 +70,8 @@ python journal.py list
 /git-journal/
 ├── journal.py            # 主程序脚本
 ├── README.md             # 项目说明文档
-├── Git学习指南.md         # 零基础Git学习指南
-├── Git工作流程实践指南.md  # VibeCoding Git工作流实践
+├── git_learning_guide.md # 零基础Git学习指南
+├── git_workflow_practice_guide.md # VibeCoding Git工作流实践
 └── entries/              # 日记条目存储目录
 ```
 
@@ -86,8 +86,8 @@ python journal.py list
 
 项目包含两个学习指南文档：
 
-1. **Git学习指南.md**：面向零基础用户的Git入门教程
-2. **Git工作流程实践指南.md**：如何在日记项目中应用VibeCoding Git工作流
+1. **git_learning_guide.md**：面向零基础用户的Git入门教程
+2. **git_workflow_practice_guide.md**：如何在日记项目中应用VibeCoding Git工作流
 
 ## 贡献与开发
 
