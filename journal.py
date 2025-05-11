@@ -78,6 +78,44 @@ def view_entry():
         except ValueError:
             print("日期格式无效，请使用YYYY-MM-DD格式")
 
+def search_entries():
+    """搜索日记内容"""
+    keyword = input("请输入要搜索的关键词: ")
+    if not keyword:
+        print("搜索关键词不能为空")
+        return
+    
+    ensure_entries_dir()
+    entries = [f for f in os.listdir(ENTRIES_DIR) if f.endswith('.txt')]
+    
+    if not entries:
+        print("目前还没有日记条目可供搜索。")
+        return
+    
+    found = False
+    print(f"\n搜索关键词 '{keyword}' 的结果:")
+    
+    for entry in sorted(entries):
+        date = entry.replace('.txt', '')
+        filepath = os.path.join(ENTRIES_DIR, entry)
+        
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+            if keyword.lower() in content.lower():
+                found = True
+                print(f"\n- {date}:")
+                
+                # 找出包含关键词的行并显示
+                lines = content.split('\n')
+                for i, line in enumerate(lines):
+                    if keyword.lower() in line.lower():
+                        print(f"  行 {i+1}: {line}")
+    
+    if not found:
+        print("没有找到包含该关键词的日记。")
+    else:
+        print("\n提示: 使用 'view' 命令查看完整日记内容")
+
 def list_entries():
     """列出所有日记条目"""
     ensure_entries_dir()
@@ -104,12 +142,14 @@ Git Journal - 简单的命令行日记应用
 可用命令:
   write    创建或更新今天的日记
   view     查看指定日期的日记
+  search   搜索日记内容
   list     列出所有已有的日记日期
   help     显示此帮助信息
 
 示例:
   python journal.py write    # 写入今天的日记
   python journal.py view     # 查看指定日期的日记
+  python journal.py search   # 搜索日记内容
   python journal.py list     # 列出所有日记
     """)
 
@@ -127,6 +167,8 @@ def main():
         write_entry()
     elif command == 'view':
         view_entry()
+    elif command == 'search':
+        search_entries()
     elif command == 'list':
         list_entries()
     elif command in ['help', '-h', '--help']:
