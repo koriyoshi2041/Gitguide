@@ -100,4 +100,4 @@ python journal.py list
 
 ## 许可证
 
-MIT 
+[MIT](LICENSE) 
